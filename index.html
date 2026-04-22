@@ -35,118 +35,24 @@ body{font-family:Georgia,serif;background:#1a0a0a;color:#f5e6d3;overflow-x:hidde
 .gorden-kanan::before{left:20%;}.gorden-kanan::after{left:55%;}
 #rel-gorden{position:fixed;top:0;left:0;width:100%;height:18px;background:linear-gradient(180deg,#8B7355,#5C4A2A);z-index:10000;box-shadow:0 3px 8px rgba(0,0,0,0.6);}
 
-/* ===== REL LAMPU ATAS ===== */
-#rel-lampu{
-  position:absolute;top:0;left:0;width:100%;height:22px;
-  background:linear-gradient(180deg,#2a1a0a 0%,#1a0f05 60%,transparent 100%);
+/* ===== STAGE LIGHTING CANVAS ===== */
+#stage-canvas{
+  position:absolute;
+  top:0;left:0;
+  width:100%;height:100%;
+  pointer-events:none;
+  z-index:1;
+}
+
+/* ===== LAMPU FISIK (SVG housing di atas) ===== */
+#lampu-rig{
+  position:absolute;
+  top:0;left:0;
+  width:100%;
+  height:60px;
+  pointer-events:none;
   z-index:3;
-  box-shadow:0 3px 12px rgba(0,0,0,0.8);
 }
-#rel-lampu::before{
-  content:'';position:absolute;top:8px;left:0;width:100%;height:3px;
-  background:repeating-linear-gradient(90deg,#3d2a10 0px,#3d2a10 40px,#2a1a08 40px,#2a1a08 80px);
-}
-
-/* ===== LAMPU PANGGUNG ===== */
-#lampu-panggung{
-  position:absolute;top:0;left:0;width:100%;height:100%;
-  overflow:hidden;pointer-events:none;z-index:0;
-}
-
-/* Wadah tiap lampu (pivot dari atas) */
-.lampu-unit{
-  position:absolute;
-  top:0px;
-  width:0;
-  height:0;
-  transform-origin:top center;
-}
-
-/* Badan lampu fisik (housing) */
-.lampu-housing{
-  position:absolute;
-  top:0px;
-  left:-10px;
-  width:20px;
-  height:28px;
-  background:linear-gradient(180deg,#3a2a10,#1a1005);
-  border-radius:3px 3px 6px 6px;
-  border:1px solid #5a3a18;
-  z-index:4;
-}
-.lampu-housing::after{
-  content:'';
-  position:absolute;
-  bottom:0;left:50%;
-  transform:translateX(-50%);
-  width:12px;height:10px;
-  border-radius:50% 50% 50% 50% / 30% 30% 70% 70%;
-  background:radial-gradient(ellipse at 50% 40%,#fff9c4,#d4a843 60%,#8b4513 100%);
-  box-shadow:0 0 8px 2px rgba(212,168,67,0.9);
-}
-
-/* Sinar beam keluar dari housing */
-.lampu-beam{
-  position:absolute;
-  top:28px;
-  left:50%;
-  transform:translateX(-50%);
-  width:0;
-  height:0;
-  border-left:solid transparent;
-  border-right:solid transparent;
-  border-top:none;
-  filter:blur(0px);
-  z-index:1;
-  transform-origin:top center;
-}
-
-/* Lingkaran sorot di ujung beam */
-.lampu-spot{
-  position:absolute;
-  border-radius:50%;
-  filter:blur(28px);
-  z-index:1;
-  opacity:0;
-  transform:translateX(-50%);
-  left:50%;
-}
-
-/* Kabel penggantung */
-.lampu-kabel{
-  position:absolute;
-  top:0;left:50%;
-  transform:translateX(-50%);
-  width:2px;
-  height:18px;
-  background:linear-gradient(180deg,#2a1a08,#3d2a10);
-  z-index:5;
-}
-
-/* Konfigurasi tiap lampu */
-.lu-1{left:6%;}
-.lu-2{left:22%;}
-.lu-3{left:46%;}
-.lu-4{left:70%;}
-.lu-5{left:88%;}
-
-/* Warna beam tiap lampu */
-.lu-1 .lampu-beam{border-left-width:28px;border-right-width:28px;border-bottom:220px solid rgba(212,168,67,0.22);}
-.lu-1 .lampu-spot{width:120px;height:120px;background:radial-gradient(circle,rgba(255,240,150,0.55),rgba(212,168,67,0.15) 60%,transparent 100%);}
-
-.lu-2 .lampu-beam{border-left-width:24px;border-right-width:24px;border-bottom:200px solid rgba(200,50,50,0.2);}
-.lu-2 .lampu-spot{width:100px;height:100px;background:radial-gradient(circle,rgba(255,160,160,0.55),rgba(180,40,40,0.15) 60%,transparent 100%);}
-
-.lu-3 .lampu-beam{border-left-width:32px;border-right-width:32px;border-bottom:240px solid rgba(255,255,255,0.2);}
-.lu-3 .lampu-spot{width:140px;height:140px;background:radial-gradient(circle,rgba(255,255,255,0.6),rgba(245,230,211,0.18) 60%,transparent 100%);}
-
-.lu-4 .lampu-beam{border-left-width:24px;border-right-width:24px;border-bottom:200px solid rgba(160,60,180,0.2);}
-.lu-4 .lampu-spot{width:100px;height:100px;background:radial-gradient(circle,rgba(220,160,255,0.5),rgba(139,26,139,0.15) 60%,transparent 100%);}
-
-.lu-5 .lampu-beam{border-left-width:28px;border-right-width:28px;border-bottom:220px solid rgba(212,168,67,0.22);}
-.lu-5 .lampu-spot{width:120px;height:120px;background:radial-gradient(circle,rgba(255,240,150,0.55),rgba(212,168,67,0.15) 60%,transparent 100%);}
-
-/* Animasi normal swing — dikontrol via JS */
 
 /* ===== HEADER ===== */
 header{background:linear-gradient(180deg,#2d0000,#1a0a0a);padding:16px 24px;display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #8b1a1a;position:sticky;top:0;z-index:500;}
@@ -155,8 +61,6 @@ header{background:linear-gradient(180deg,#2d0000,#1a0a0a);padding:16px 24px;disp
 .ornamen{color:#d4a843;font-size:1.1rem;letter-spacing:5px;}
 .tombol-grup{display:flex;gap:8px;align-items:center;}
 .nama-user{color:#a07850;font-size:0.8rem;letter-spacing:1px;max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-
-/* ===== TOMBOL ===== */
 .tombol-login{background:transparent;border:1.5px solid #d4a843;color:#d4a843;padding:8px 18px;font-family:Georgia,serif;font-size:0.82rem;letter-spacing:2px;cursor:pointer;transition:all 0.3s;white-space:nowrap;}
 .tombol-login:hover{background:#d4a843;color:#1a0a0a;box-shadow:0 0 18px rgba(212,168,67,0.6);}
 .tombol-login:active{transform:scale(0.94);filter:brightness(0.75);}
@@ -173,15 +77,18 @@ header{background:linear-gradient(180deg,#2d0000,#1a0a0a);padding:16px 24px;disp
 
 /* ===== HERO ===== */
 .hero{
-  text-align:center;padding:80px 24px 60px;
-  background:radial-gradient(ellipse at center,#2d0a0a 0%,#1a0a0a 70%);
-  position:relative;min-height:460px;
-  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  text-align:center;
+  padding:80px 24px 60px;
+  background:#0d0505;
+  position:relative;
+  min-height:480px;
+  display:flex;flex-direction:column;
+  justify-content:center;align-items:center;
   overflow:hidden;
 }
-.hero-konten{position:relative;z-index:2;}
+.hero-konten{position:relative;z-index:4;}
 .hero-subtitle{font-size:0.75rem;color:#a07850;letter-spacing:7px;text-transform:uppercase;margin-bottom:14px;}
-.hero-judul{font-size:clamp(2rem,7vw,3.2rem);color:#f5e6d3;line-height:1.1;margin-bottom:8px;text-shadow:0 2px 30px rgba(0,0,0,0.9);}
+.hero-judul{font-size:clamp(2rem,7vw,3.4rem);color:#f5e6d3;line-height:1.1;margin-bottom:8px;text-shadow:0 2px 40px rgba(0,0,0,0.95);}
 .hero-judul span{color:#d4a843;display:block;font-size:1.6rem;}
 .hero-tema{font-size:clamp(0.7rem,2.5vw,0.95rem);color:#c0a882;letter-spacing:5px;text-transform:uppercase;margin-bottom:22px;}
 .hero-desc{font-size:0.9rem;color:#c0a882;max-width:440px;margin:0 auto 28px;line-height:1.8;}
@@ -189,12 +96,10 @@ header{background:linear-gradient(180deg,#2d0000,#1a0a0a);padding:16px 24px;disp
   background:#8b1a1a;border:none;color:#f5e6d3;
   padding:14px 38px;font-family:Georgia,serif;font-size:0.95rem;
   letter-spacing:3px;text-transform:uppercase;cursor:pointer;
-  transition:all 0.35s;position:relative;z-index:2;
+  transition:all 0.35s;position:relative;z-index:4;
+  box-shadow:0 0 20px rgba(139,26,26,0.4);
 }
-.tombol-lihat:hover{background:#a02020;transform:translateY(-2px);box-shadow:0 6px 24px rgba(139,26,26,0.65);}
-.tombol-lihat:active{transform:scale(0.96);filter:brightness(0.78);}
-.garis-ornamen{text-align:center;color:#d4a843;letter-spacing:10px;padding:18px 0;position:relative;z-index:2;}
-</style>
+.tombol-lihat:hover{background:#a02020;transform:translateY(-2px);box-shadow:0 6px 28px rgba(139,26,26,0.7);}
 <style>
 /* ===== OVERLAY & PANEL ===== */
 .overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.88);z-index:1000;justify-content:center;align-items:flex-start;padding:16px;overflow-y:auto;}
@@ -252,8 +157,6 @@ header{background:linear-gradient(180deg,#2d0000,#1a0a0a);padding:16px 24px;disp
 .metode-btn.dipilih{border-color:#d4a843;color:#d4a843;background:#1a0a00;box-shadow:0 0 10px rgba(212,168,67,0.28);}
 .metode-btn:hover{border-color:#8b1a1a;color:#f5e6d3;}
 .metode-btn:active{transform:scale(0.95);filter:brightness(0.75);}
-
-/* ===== PANEL BAYAR ===== */
 .panel-bayar{max-width:420px;}
 .qris-box{text-align:center;padding:18px;background:#0d0000;border:1px solid #3d1010;margin-bottom:14px;}
 .qris-box img{max-width:190px;margin:0 auto;display:block;}
@@ -284,7 +187,7 @@ header{background:linear-gradient(180deg,#2d0000,#1a0a0a);padding:16px 24px;disp
 .tab-btn{background:transparent;border:1px solid #3d1010;color:#a07850;padding:9px 18px;font-family:Georgia,serif;font-size:0.82rem;letter-spacing:2px;cursor:pointer;transition:all 0.3s;border-radius:0;}
 .tab-btn.aktif{background:#8b1a1a;border-color:#8b1a1a;color:#f5e6d3;}
 .tab-btn:hover{border-color:#8b1a1a;color:#f5e6d3;}
-.tab-btn:active{transform:scale(0.95);filter:brightness(0.8);}
+.tab-btn:active{transform:scale(0.95);}
 .tab-konten{display:none;}
 .tab-konten.aktif{display:block;}
 .tabel-wrap{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;}
@@ -298,10 +201,10 @@ header{background:linear-gradient(180deg,#2d0000,#1a0a0a);padding:16px 24px;disp
 .badge-ditolak{background:#3d0000;color:#d42020;border:1px solid #6b0000;}
 .tombol-konfirmasi{background:#003d1a;border:1px solid #1a8b4a;color:#a0f5c0;padding:5px 10px;font-family:Georgia,serif;font-size:0.72rem;cursor:pointer;transition:all 0.3s;margin-right:3px;white-space:nowrap;border-radius:0;}
 .tombol-konfirmasi:hover{background:#006b30;}
-.tombol-konfirmasi:active{transform:scale(0.92);filter:brightness(0.75);}
+.tombol-konfirmasi:active{transform:scale(0.92);}
 .tombol-tolak{background:#3d0000;border:1px solid #8b1a1a;color:#f5a0a0;padding:5px 10px;font-family:Georgia,serif;font-size:0.72rem;cursor:pointer;transition:all 0.3s;border-radius:0;white-space:nowrap;}
 .tombol-tolak:hover{background:#6b0000;}
-.tombol-tolak:active{transform:scale(0.92);filter:brightness(0.75);}
+.tombol-tolak:active{transform:scale(0.92);}
 .tombol-hapus{background:#3d0000;border:1px solid #8b1a1a;color:#f5a0a0;padding:5px 10px;font-family:Georgia,serif;font-size:0.72rem;cursor:pointer;transition:all 0.3s;margin-right:3px;white-space:nowrap;border-radius:0;}
 .tombol-hapus:hover{background:#6b0000;}
 .tombol-hapus:active{transform:scale(0.92);}
@@ -309,7 +212,7 @@ header{background:linear-gradient(180deg,#2d0000,#1a0a0a);padding:16px 24px;disp
 .tombol-edit:hover{background:#1a3a6b;}
 .tombol-edit:active{transform:scale(0.92);}
 .tombol-tambah-acara{background:#8b1a1a;border:none;color:#f5e6d3;padding:10px 20px;font-family:Georgia,serif;font-size:0.82rem;letter-spacing:2px;cursor:pointer;transition:all 0.3s;border-radius:0;}
-.tombol-tambah-acara:hover{background:#a02020;box-shadow:0 0 14px rgba(139,26,26,0.5);}
+.tombol-tambah-acara:hover{background:#a02020;}
 .tombol-tambah-acara:active{transform:scale(0.95);}
 .stat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:24px;}
 .stat-card{background:#2d0a0a;border:1px solid #3d1010;padding:16px;text-align:center;}
@@ -321,11 +224,7 @@ header{background:linear-gradient(180deg,#2d0000,#1a0a0a);padding:16px 24px;disp
 .upload-foto-btn:hover{border-color:#d4a843;color:#d4a843;}
 .preview-foto{width:100%;max-height:180px;object-fit:contain;border:1px solid #3d1010;display:none;margin-top:8px;}
 .preview-foto-qris{width:150px;height:150px;object-fit:contain;border:1px solid #3d1010;display:none;margin-top:8px;}
-
-/* ===== FOOTER ===== */
 footer{text-align:center;padding:24px 16px;border-top:1px solid #3d1010;color:#5a3a2a;font-size:0.75rem;letter-spacing:2px;}
-
-/* ===== TOAST & NOTIF ===== */
 #toast{position:fixed;bottom:20px;right:16px;left:16px;max-width:320px;margin:0 auto;background:#2d0a0a;border:1px solid #8b1a1a;color:#f5e6d3;padding:13px 20px;font-size:0.83rem;z-index:9999;opacity:0;transition:opacity 0.4s;pointer-events:none;letter-spacing:1px;text-align:center;}
 #toast.muncul{opacity:1;}
 #toast.sukses{border-color:#1a8b4a;background:#001a0d;}
@@ -335,14 +234,13 @@ footer{text-align:center;padding:24px 16px;border-top:1px solid #3d1010;color:#5
 #notif-besar .notif-icon{font-size:2.2rem;margin-bottom:10px;}
 #notif-besar .notif-pesan{color:#f5e6d3;font-size:0.95rem;letter-spacing:1px;line-height:1.7;white-space:pre-line;}
 
-/* ===== RESPONSIVE ===== */
 @media(max-width:480px){
   header{padding:12px 14px;}
   .logo-teater h1{font-size:0.95rem;letter-spacing:2px;}
   .logo-teater p{font-size:0.58rem;letter-spacing:2px;}
   .ornamen{display:none;}
   .tombol-login,.tombol-daftar,.tombol-keluar{padding:7px 13px;font-size:0.75rem;letter-spacing:1px;}
-  .hero{padding:60px 16px 44px;min-height:400px;}
+  .hero{padding:60px 16px 44px;min-height:420px;}
   .hero-desc{font-size:0.82rem;}
   .tombol-lihat{padding:12px 28px;font-size:0.85rem;letter-spacing:2px;}
   .grid-acara{grid-template-columns:repeat(2,1fr);gap:10px;padding:8px 10px 40px;}
@@ -381,49 +279,18 @@ footer{text-align:center;padding:24px 16px;border-top:1px solid #3d1010;color:#5
 <!-- BERANDA -->
 <div class="halaman aktif" id="hal-beranda">
   <section class="hero" id="hero-section">
-    <div id="rel-lampu"></div>
-    <div id="lampu-panggung">
-      <div class="lampu-unit lu-1" id="lu1">
-        <div class="lampu-kabel"></div>
-        <div class="lampu-housing"></div>
-        <div class="lampu-beam"></div>
-        <div class="lampu-spot" id="spot1"></div>
-      </div>
-      <div class="lampu-unit lu-2" id="lu2">
-        <div class="lampu-kabel"></div>
-        <div class="lampu-housing"></div>
-        <div class="lampu-beam"></div>
-        <div class="lampu-spot" id="spot2"></div>
-      </div>
-      <div class="lampu-unit lu-3" id="lu3">
-        <div class="lampu-kabel"></div>
-        <div class="lampu-housing"></div>
-        <div class="lampu-beam"></div>
-        <div class="lampu-spot" id="spot3"></div>
-      </div>
-      <div class="lampu-unit lu-4" id="lu4">
-        <div class="lampu-kabel"></div>
-        <div class="lampu-housing"></div>
-        <div class="lampu-beam"></div>
-        <div class="lampu-spot" id="spot4"></div>
-      </div>
-      <div class="lampu-unit lu-5" id="lu5">
-        <div class="lampu-kabel"></div>
-        <div class="lampu-housing"></div>
-        <div class="lampu-beam"></div>
-        <div class="lampu-spot" id="spot5"></div>
-      </div>
-    </div>
+    <canvas id="stage-canvas"></canvas>
+    <svg id="lampu-rig" viewBox="0 0 1000 60" preserveAspectRatio="none"></svg>
     <div class="hero-konten">
       <p class="hero-subtitle">Selamat Datang</p>
       <h2 class="hero-judul">KOLABORASI<span>✦</span></h2>
       <p class="hero-tema">Pertunjukan Para Negeri</p>
       <p class="hero-desc">Pesan tiket pertunjukan terbaik dengan mudah dan aman. Tiket digital langsung tersimpan di akun Anda.</p>
       <button class="tombol-lihat" id="tombol-lihat-btn"
-        onmouseenter="fokusLampu(true)"
-        onmouseleave="fokusLampu(false)"
-        ontouchstart="fokusLampu(true)"
-        ontouchend="fokusLampu(false)"
+        onmouseenter="setFokusLampu(true)"
+        onmouseleave="setFokusLampu(false)"
+        ontouchstart="setFokusLampu(true)"
+        ontouchend="setFokusLampu(false)"
         onclick="klikLihatPenampilan()">Lihat Penampilan</button>
       <div class="garis-ornamen">✦ &nbsp; ✦ &nbsp; ✦</div>
     </div>
@@ -571,264 +438,385 @@ footer{text-align:center;padding:24px 16px;border-top:1px solid #3d1010;color:#5
 <div id="notif-besar"><div class="notif-icon" id="notif-icon"></div><div class="notif-pesan" id="notif-pesan"></div></div>
 <div id="toast"></div>
 <script>
-const SUPA_URL='https://dklveruraujqdlakbocb.supabase.co';
-const SUPA_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRrbHZlcnVyYXVqcWRsYWtib2NiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY2NjUxMjcsImV4cCI6MjA5MjI0MTEyN30.7ZW1AMWEGQKK28Rq1pQcdZRladZoKkO0Xd9P2ir3PK4';
-const SUPA_H={'Content-Type':'application/json','apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY,'Prefer':'return=representation'};
-
-async function db(endpoint,method='GET',body=null){
-  const opt={method,headers:SUPA_H};
-  if(body) opt.body=JSON.stringify(body);
-  const r=await fetch(SUPA_URL+'/rest/v1/'+endpoint,opt);
-  if(r.status===204) return [];
-  const txt=await r.text();
-  if(!txt) return [];
-  try{return JSON.parse(txt);}catch(e){return [];}
-}
-
-async function dbRaw(endpoint,method,body=null){
-  const headers={
-    'Content-Type':'application/json',
-    'apikey':SUPA_KEY,
-    'Authorization':'Bearer '+SUPA_KEY,
-    'Prefer':'return=minimal'
-  };
-  const opt={method,headers};
-  if(body) opt.body=JSON.stringify(body);
-  return fetch(SUPA_URL+'/rest/v1/'+endpoint,opt);
-}
-
-let userSesiIni=null,acaraDipilih=null,metodeBayar=null,transaksiAktif=null;
-let buktiBase64=null,qrisBase64=null,posterBase64=null;
-
-/* ===== LAMPU PANGGUNG — SISTEM BARU ===== */
-const lampuData=[
-  {id:'lu1',posX:6,  periode:6200, ampli:22, fase:0   },
-  {id:'lu2',posX:22, periode:7400, ampli:18, fase:0.9 },
-  {id:'lu3',posX:46, periode:5600, ampli:12, fase:0.4 },
-  {id:'lu4',posX:70, periode:8100, ampli:20, fase:1.3 },
-  {id:'lu5',posX:88, periode:6800, ampli:22, fase:0.6 }
+/* ============================================================
+   STAGE LIGHTING — Canvas Renderer
+   Menggambar lampu sorot & beam panggung yang realistis
+   ============================================================ */
+const LAMPU_DEF = [
+  { x:0.06, warna:'255,220,80',  warna2:'255,180,0',  T:6200, A:24, fase:0.0  },
+  { x:0.22, warna:'255,100,100', warna2:'200,30,30',   T:7400, A:19, fase:1.1  },
+  { x:0.46, warna:'255,255,255', warna2:'240,220,200', T:5600, A:13, fase:0.5  },
+  { x:0.70, warna:'180,100,255', warna2:'120,20,200',  T:8100, A:21, fase:1.8  },
+  { x:0.88, warna:'255,220,80',  warna2:'255,180,0',   T:6800, A:24, fase:0.7  }
 ];
 
-let lampuFokus=false;
-let lampuAnimId=null;
-let lampuStartTime=null;
+let cvs, ctx, heroEl, rigSvg;
+let sudutLampu   = LAMPU_DEF.map(() => 0);   // sudut saat ini (deg)
+let targetSudut  = LAMPU_DEF.map(() => 0);   // sudut tujuan
+let modeFokus    = false;
+let animRafId    = null;
+let tMulai       = null;
 
-function animasiLampu(ts){
-  if(!lampuStartTime) lampuStartTime=ts;
-  if(lampuFokus){lampuAnimId=requestAnimationFrame(animasiLampu);return;}
-  const t=(ts-lampuStartTime)/1000;
-  lampuData.forEach(ld=>{
-    const el=document.getElementById(ld.id);
-    if(!el) return;
-    const angle=Math.sin((t*2*Math.PI/ld.periode*1000)+ld.fase)*ld.ampli;
-    el.style.transform=`rotate(${angle}deg)`;
-    const spotEl=el.querySelector('.lampu-spot');
-    if(spotEl){
-      const heroH=document.querySelector('.hero')?document.querySelector('.hero').offsetHeight:400;
-      const beamLen=heroH*0.82;
-      const spotX=Math.tan(angle*Math.PI/180)*beamLen;
-      spotEl.style.transform=`translateX(calc(-50% + ${spotX}px))`;
-      spotEl.style.top=(beamLen-40)+'px';
-      spotEl.style.opacity='0.55';
+function initCanvas() {
+  cvs   = document.getElementById('stage-canvas');
+  ctx   = cvs.getContext('2d');
+  heroEl= document.getElementById('hero-section');
+  rigSvg= document.getElementById('lampu-rig');
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
+  gambarRig();
+}
+
+function resizeCanvas() {
+  if (!heroEl || !cvs) return;
+  cvs.width  = heroEl.offsetWidth;
+  cvs.height = heroEl.offsetHeight;
+}
+
+/* Gambar housing lampu di SVG atas */
+function gambarRig() {
+  if (!rigSvg) return;
+  let html = '';
+  /* rel truss */
+  html += `<rect x="0" y="10" width="1000" height="8" fill="#2a1a08"/>`;
+  html += `<rect x="0" y="10" width="1000" height="2" fill="#4a3018" opacity="0.6"/>`;
+  LAMPU_DEF.forEach((ld, i) => {
+    const cx = ld.x * 1000;
+    /* kabel */
+    html += `<line x1="${cx}" y1="18" x2="${cx}" y2="34" stroke="#1a1005" stroke-width="2"/>`;
+    /* body lampu */
+    html += `<rect x="${cx-9}" y="34" width="18" height="20" rx="2" fill="#1e1208" stroke="#3a2510" stroke-width="1"/>`;
+    /* lensa */
+    html += `<ellipse cx="${cx}" cy="55" rx="7" ry="5" fill="url(#lg${i})"/>`;
+    /* gradient lensa */
+    html += `<defs><radialGradient id="lg${i}" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="rgb(${ld.warna})" stop-opacity="1"/>
+      <stop offset="100%" stop-color="rgb(${ld.warna2})" stop-opacity="0.4"/>
+    </radialGradient></defs>`;
+    /* baut kiri kanan */
+    html += `<circle cx="${cx-10}" cy="44" r="2" fill="#3a2510"/>`;
+    html += `<circle cx="${cx+10}" cy="44" r="2" fill="#3a2510"/>`;
+  });
+  rigSvg.innerHTML = html;
+}
+
+/* -------- Render satu frame -------- */
+function renderFrame(ts) {
+  if (!tMulai) tMulai = ts;
+  const t = (ts - tMulai) / 1000;
+  const W = cvs.width, H = cvs.height;
+
+  /* Update sudut — jika fokus: interpolasi ke target; jika bebas: osilasi */
+  LAMPU_DEF.forEach((ld, i) => {
+    if (modeFokus) {
+      sudutLampu[i] += (targetSudut[i] - sudutLampu[i]) * 0.07;
+    } else {
+      const tgt = Math.sin(t * 2 * Math.PI / (ld.T / 1000) + ld.fase) * ld.A;
+      sudutLampu[i] += (tgt - sudutLampu[i]) * 0.04;
     }
   });
-  lampuAnimId=requestAnimationFrame(animasiLampu);
+
+  ctx.clearRect(0, 0, W, H);
+
+  /* Latar gelap samar */
+  const bg = ctx.createLinearGradient(0, 0, 0, H);
+  bg.addColorStop(0, 'rgba(10,3,3,0.0)');
+  bg.addColorStop(1, 'rgba(10,3,3,0.0)');
+  ctx.fillStyle = bg;
+  ctx.fillRect(0, 0, W, H);
+
+  /* Gambar tiap lampu */
+  LAMPU_DEF.forEach((ld, i) => {
+    const originX = ld.x * W;
+    const originY = 56;   /* ujung lensa di hero */
+    const sudutRad = sudutLampu[i] * Math.PI / 180;
+
+    /* Panjang beam & lebar sudut spread */
+    const beamLen  = H * 0.95;
+    const halfSpread = 13 * Math.PI / 180;  /* setengah sudut kerucut */
+
+    /* Ujung beam (titik tengah sorot) */
+    const tipX = originX + Math.sin(sudutRad) * beamLen;
+    const tipY = originY + Math.cos(sudutRad) * beamLen;
+
+    /* Vektor tegak lurus untuk lebar beam */
+    const perpX = Math.cos(sudutRad);
+    const perpY = -Math.sin(sudutRad);
+
+    /* Lebar di ujung beam */
+    const halfW = beamLen * Math.tan(halfSpread);
+
+    /* Empat titik trapesium beam */
+    const x1 = originX - perpX * 4;
+    const y1 = originY - perpY * 4;
+    const x2 = originX + perpX * 4;
+    const y2 = originY + perpY * 4;
+    const x3 = tipX + perpX * halfW;
+    const y3 = tipY + perpY * halfW;
+    const x4 = tipX - perpX * halfW;
+    const y4 = tipY - perpY * halfW;
+
+    /* ---- Beam utama (gradient dari sumber ke ujung) ---- */
+    const beamGrad = ctx.createLinearGradient(originX, originY, tipX, tipY);
+    const opBeam = modeFokus ? 0.38 : 0.22;
+    beamGrad.addColorStop(0,   `rgba(${ld.warna},${opBeam + 0.1})`);
+    beamGrad.addColorStop(0.3, `rgba(${ld.warna},${opBeam})`);
+    beamGrad.addColorStop(1,   `rgba(${ld.warna},0.0)`);
+
+    ctx.save();
+    ctx.beginPath();
+    ctx.moveTo(x1, y1);
+    ctx.lineTo(x2, y2);
+    ctx.lineTo(x3, y3);
+    ctx.lineTo(x4, y4);
+    ctx.closePath();
+    ctx.fillStyle = beamGrad;
+    ctx.globalCompositeOperation = 'screen';
+    ctx.fill();
+    ctx.restore();
+
+    /* ---- Garis tepi beam (edge glow) ---- */
+    const edgeOp = modeFokus ? 0.18 : 0.10;
+    [
+      [x1,y1,x4,y4],
+      [x2,y2,x3,y3]
+    ].forEach(([ax,ay,bx,by]) => {
+      const eg = ctx.createLinearGradient(ax,ay,bx,by);
+      eg.addColorStop(0,   `rgba(${ld.warna},${edgeOp})`);
+      eg.addColorStop(0.5, `rgba(${ld.warna},${edgeOp*0.5})`);
+      eg.addColorStop(1,   `rgba(${ld.warna},0)`);
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(ax,ay);ctx.lineTo(bx,by);
+      ctx.strokeStyle = eg;
+      ctx.lineWidth = 2;
+      ctx.globalCompositeOperation = 'screen';
+      ctx.stroke();
+      ctx.restore();
+    });
+
+    /* ---- Spot sorot di ujung (lingkaran cahaya) ---- */
+    const spotR = halfW * 1.4;
+    const spotOp = modeFokus ? 0.55 : 0.30;
+    const spotGrad = ctx.createRadialGradient(tipX, tipY, 0, tipX, tipY, spotR);
+    spotGrad.addColorStop(0,   `rgba(${ld.warna},${spotOp})`);
+    spotGrad.addColorStop(0.4, `rgba(${ld.warna},${spotOp*0.5})`);
+    spotGrad.addColorStop(1,   `rgba(${ld.warna},0)`);
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(tipX, tipY, spotR, 0, Math.PI * 2);
+    ctx.fillStyle = spotGrad;
+    ctx.globalCompositeOperation = 'screen';
+    ctx.fill();
+    ctx.restore();
+
+    /* ---- Flare kecil di sumber lampu ---- */
+    const flareR = 18;
+    const flareOp = modeFokus ? 0.7 : 0.45;
+    const flareGrad = ctx.createRadialGradient(originX, originY, 0, originX, originY, flareR);
+    flareGrad.addColorStop(0,   `rgba(255,255,255,${flareOp})`);
+    flareGrad.addColorStop(0.3, `rgba(${ld.warna},${flareOp*0.6})`);
+    flareGrad.addColorStop(1,   `rgba(${ld.warna},0)`);
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(originX, originY, flareR, 0, Math.PI * 2);
+    ctx.fillStyle = flareGrad;
+    ctx.globalCompositeOperation = 'screen';
+    ctx.fill();
+    ctx.restore();
+  });
+
+  animRafId = requestAnimationFrame(renderFrame);
 }
 
-function mulaiLampu(){
-  if(lampuAnimId) cancelAnimationFrame(lampuAnimId);
-  lampuStartTime=null;
-  lampuAnimId=requestAnimationFrame(animasiLampu);
+function mulaiLampu() {
+  if (animRafId) cancelAnimationFrame(animRafId);
+  tMulai = null;
+  animRafId = requestAnimationFrame(renderFrame);
 }
 
-function fokusLampu(aktif){
-  if(aktif){
-    lampuFokus=true;
-    const btn=document.getElementById('tombol-lihat-btn');
-    const hero=document.getElementById('hero-section');
-    if(!btn||!hero) return;
-    const btnR=btn.getBoundingClientRect();
-    const heroR=hero.getBoundingClientRect();
-    const btnCX=btnR.left+btnR.width/2-heroR.left;
-    const heroW=heroR.width;
-    const heroH=heroR.height;
-    lampuData.forEach(ld=>{
-      const el=document.getElementById(ld.id);
-      if(!el) return;
-      const lampuXpx=heroW*ld.posX/100;
-      const dx=btnCX-lampuXpx;
-      const dy=heroH*0.62;
-      const angle=Math.atan2(dx,dy)*(180/Math.PI);
-      const clamped=Math.max(-52,Math.min(52,angle));
-      el.style.transition='transform 0.75s cubic-bezier(.25,.46,.45,.94)';
-      el.style.transform=`rotate(${clamped}deg)`;
-      const spotEl=el.querySelector('.lampu-spot');
-      if(spotEl){
-        spotEl.style.opacity='0.88';
-        spotEl.style.transition='opacity 0.5s ease';
-        spotEl.style.filter='blur(18px)';
-      }
+/* ---- Fokus semua lampu ke tombol ---- */
+function setFokusLampu(aktif) {
+  modeFokus = aktif;
+  if (aktif) {
+    const btn   = document.getElementById('tombol-lihat-btn');
+    const hero  = document.getElementById('hero-section');
+    if (!btn || !hero) return;
+    const btnR  = btn.getBoundingClientRect();
+    const heroR = hero.getBoundingClientRect();
+    const btnCX = btnR.left + btnR.width  / 2 - heroR.left;
+    const btnCY = btnR.top  + btnR.height / 2 - heroR.top;
+    const W     = heroR.width;
+    LAMPU_DEF.forEach((ld, i) => {
+      const lampuXpx = ld.x * W;
+      const dx = btnCX - lampuXpx;
+      const dy = btnCY - 56;
+      targetSudut[i] = Math.atan2(dx, dy) * 180 / Math.PI;
+      targetSudut[i] = Math.max(-55, Math.min(55, targetSudut[i]));
     });
-  } else {
-    lampuFokus=false;
-    lampuData.forEach(ld=>{
-      const el=document.getElementById(ld.id);
-      if(!el) return;
-      el.style.transition='transform 0.9s cubic-bezier(.25,.46,.45,.94)';
-      const spotEl=el.querySelector('.lampu-spot');
-      if(spotEl){
-        spotEl.style.opacity='0.55';
-        spotEl.style.transition='opacity 0.6s ease';
-        spotEl.style.filter='blur(28px)';
-      }
-    });
-    setTimeout(()=>{
-      lampuData.forEach(ld=>{
-        const el=document.getElementById(ld.id);
-        if(el) el.style.transition='';
-      });
-      mulaiLampu();
-    },950);
   }
 }
 
-function klikLihatPenampilan(){
-  fokusLampu(true);
-  setTimeout(()=>{
-    fokusLampu(false);
-    setTimeout(()=>muatHalamanAcara(),500);
-  },800);
+function klikLihatPenampilan() {
+  setFokusLampu(true);
+  setTimeout(() => {
+    setFokusLampu(false);
+    setTimeout(() => muatHalamanAcara(), 500);
+  }, 900);
 }
 
-/* Inisialisasi lampu saat halaman load */
-window.addEventListener('load',()=>setTimeout(mulaiLampu,3600));
+window.addEventListener('load', () => {
+  setTimeout(() => { initCanvas(); mulaiLampu(); }, 3700);
+});
+window.addEventListener('resize', () => {
+  resizeCanvas();
+  gambarRig();
+});
 
-/* ===== UTILITAS ===== */
-function toast(msg,tipe=''){
-  const t=document.getElementById('toast');
-  t.className='';t.textContent=msg;
-  if(tipe) t.classList.add(tipe);
+/* ============================================================
+   SUPABASE & UTILITAS
+   ============================================================ */
+const SUPA_URL = 'https://dklveruraujqdlakbocb.supabase.co';
+const SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRrbHZlcnVyYXVqcWRsYWtib2NiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY2NjUxMjcsImV4cCI6MjA5MjI0MTEyN30.7ZW1AMWEGQKK28Rq1pQcdZRladZoKkO0Xd9P2ir3PK4';
+const SUPA_H   = {
+  'Content-Type':'application/json',
+  'apikey':SUPA_KEY,
+  'Authorization':'Bearer '+SUPA_KEY,
+  'Prefer':'return=representation'
+};
+
+async function db(endpoint, method='GET', body=null) {
+  const opt = { method, headers: SUPA_H };
+  if (body) opt.body = JSON.stringify(body);
+  const r = await fetch(SUPA_URL+'/rest/v1/'+endpoint, opt);
+  if (r.status === 204) return [];
+  const txt = await r.text();
+  if (!txt) return [];
+  try { return JSON.parse(txt); } catch(e) { return []; }
+}
+
+let userSesiIni=null, acaraDipilih=null, metodeBayar=null, transaksiAktif=null;
+let buktiBase64=null, qrisBase64=null, posterBase64=null;
+
+function toast(msg, tipe='') {
+  const t = document.getElementById('toast');
+  t.className = ''; t.textContent = msg;
+  if (tipe) t.classList.add(tipe);
   t.classList.add('muncul');
-  setTimeout(()=>t.classList.remove('muncul'),3500);
+  setTimeout(() => t.classList.remove('muncul'), 3500);
 }
-function notifBesar(icon,pesan,durasi=2400){
-  const n=document.getElementById('notif-besar');
-  document.getElementById('notif-icon').textContent=icon;
-  document.getElementById('notif-pesan').textContent=pesan;
+function notifBesar(icon, pesan, durasi=2400) {
+  const n = document.getElementById('notif-besar');
+  document.getElementById('notif-icon').textContent = icon;
+  document.getElementById('notif-pesan').textContent = pesan;
   n.classList.add('muncul');
-  setTimeout(()=>n.classList.remove('muncul'),durasi);
+  setTimeout(() => n.classList.remove('muncul'), durasi);
 }
-function rupiah(n){return 'Rp '+parseInt(n).toLocaleString('id-ID');}
+function rupiah(n) { return 'Rp ' + parseInt(n).toLocaleString('id-ID'); }
 
-function gordenTransisi(cb){
-  const g=document.getElementById('gorden-transisi');
-  g.className='tutup';
-  setTimeout(()=>{if(cb)cb();g.className='buka';setTimeout(()=>{g.className='';},480);},440);
+function gordenTransisi(cb) {
+  const g = document.getElementById('gorden-transisi');
+  g.className = 'tutup';
+  setTimeout(() => { if(cb) cb(); g.className = 'buka'; setTimeout(() => { g.className=''; }, 480); }, 440);
 }
-
-function bukaPanel(id){
-  const el=document.getElementById(id);
-  el.style.opacity='0';el.classList.add('aktif');
-  requestAnimationFrame(()=>{el.style.transition='opacity 0.28s';el.style.opacity='1';});
+function bukaPanel(id) {
+  const el = document.getElementById(id);
+  el.style.opacity = '0'; el.classList.add('aktif');
+  requestAnimationFrame(() => { el.style.transition='opacity 0.28s'; el.style.opacity='1'; });
 }
-function tutupPanel(id){
-  const el=document.getElementById(id);
-  el.style.transition='opacity 0.22s';el.style.opacity='0';
-  setTimeout(()=>{el.classList.remove('aktif');el.style.opacity='';el.style.transition='';},240);
+function tutupPanel(id) {
+  const el = document.getElementById(id);
+  el.style.transition = 'opacity 0.22s'; el.style.opacity = '0';
+  setTimeout(() => { el.classList.remove('aktif'); el.style.opacity=''; el.style.transition=''; }, 240);
 }
-function tutupPanelDenganLampu(id){
+function tutupPanelDenganLampu(id) {
   tutupPanel(id);
-  // Pastikan lampu tidak stuck saat panel ditutup
-  setTimeout(()=>{
-    if(!lampuFokus){mulaiLampu();}
-  },300);
+  setTimeout(() => { if (!modeFokus) { tMulai=null; } }, 300);
 }
-function gantiPanel(a,b){tutupPanel(a);setTimeout(()=>bukaPanel(b),260);}
-function tampilHalaman(id){
-  gordenTransisi(()=>{
-    document.querySelectorAll('.halaman').forEach(h=>h.classList.remove('aktif'));
+function gantiPanel(a, b) { tutupPanel(a); setTimeout(() => bukaPanel(b), 260); }
+function tampilHalaman(id) {
+  gordenTransisi(() => {
+    document.querySelectorAll('.halaman').forEach(h => h.classList.remove('aktif'));
     document.getElementById(id).classList.add('aktif');
-    window.scrollTo(0,0);
+    window.scrollTo(0, 0);
   });
 }
-function gantiTab(id,btn){
-  document.querySelectorAll('.tab-konten').forEach(t=>t.classList.remove('aktif'));
-  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('aktif'));
-  document.getElementById(id).classList.add('aktif');btn.classList.add('aktif');
-  if(id==='tab-acara-admin') muatTabelAcara();
-  if(id==='tab-transaksi') muatTabelTransaksi();
+function gantiTab(id, btn) {
+  document.querySelectorAll('.tab-konten').forEach(t => t.classList.remove('aktif'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('aktif'));
+  document.getElementById(id).classList.add('aktif'); btn.classList.add('aktif');
+  if (id==='tab-acara-admin') muatTabelAcara();
+  if (id==='tab-transaksi') muatTabelTransaksi();
 }
-function updateHeader(){
-  const g=document.getElementById('grup-header');
-  if(userSesiIni){
-    const label=userSesiIni.role==='admin'?'Admin':userSesiIni.nama;
-    g.innerHTML=`<span class="nama-user">${label}</span><button class="tombol-keluar" onclick="doLogout()">Keluar</button>`;
+function updateHeader() {
+  const g = document.getElementById('grup-header');
+  if (userSesiIni) {
+    const label = userSesiIni.role==='admin' ? 'Admin' : userSesiIni.nama;
+    g.innerHTML = `<span class="nama-user">${label}</span><button class="tombol-keluar" onclick="doLogout()">Keluar</button>`;
   } else {
-    g.innerHTML=`<button class="tombol-login" onclick="bukaPanel('panel-login')">Login</button>
+    g.innerHTML = `<button class="tombol-login" onclick="bukaPanel('panel-login')">Login</button>
     <button class="tombol-daftar" onclick="bukaPanel('panel-daftar')">Daftar</button>`;
   }
 }
-function previewFotoPanel(input,prevId,jenis){
-  const file=input.files[0];if(!file) return;
-  const reader=new FileReader();
-  reader.onload=function(e){
-    const img=document.getElementById(prevId);
-    img.src=e.target.result;img.style.display='block';
-    if(jenis==='qris') qrisBase64=e.target.result;
-    if(jenis==='poster') posterBase64=e.target.result;
+function previewFotoPanel(input, prevId, jenis) {
+  const file = input.files[0]; if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const img = document.getElementById(prevId);
+    img.src = e.target.result; img.style.display = 'block';
+    if (jenis==='qris') qrisBase64 = e.target.result;
+    if (jenis==='poster') posterBase64 = e.target.result;
   };
   reader.readAsDataURL(file);
 }
 
-/* ===== AUTH ===== */
-async function doLogin(){
-  const email=document.getElementById('login-email').value.trim();
-  const pass=document.getElementById('login-pass').value;
-  const err=document.getElementById('err-login');err.style.display='none';
-  if(!email||!pass){err.textContent='Email dan password wajib diisi.';err.style.display='block';return;}
-  const res=await db(`users?email=eq.${encodeURIComponent(email)}&password=eq.${encodeURIComponent(pass)}&select=*`);
-  if(!res||res.length===0){err.textContent='Email atau password salah.';err.style.display='block';return;}
-  userSesiIni=res[0];tutupPanel('panel-login');updateHeader();
-  toast('Selamat datang, '+userSesiIni.nama+'!','sukses');
-  if(userSesiIni.role==='admin'){tampilHalaman('hal-admin');muatStatAdmin();muatTabelTransaksi();}
-  else{muatHalamanAcara();}
+/* AUTH */
+async function doLogin() {
+  const email = document.getElementById('login-email').value.trim();
+  const pass  = document.getElementById('login-pass').value;
+  const err   = document.getElementById('err-login'); err.style.display='none';
+  if (!email||!pass) { err.textContent='Email dan password wajib diisi.'; err.style.display='block'; return; }
+  const res = await db(`users?email=eq.${encodeURIComponent(email)}&password=eq.${encodeURIComponent(pass)}&select=*`);
+  if (!res||res.length===0) { err.textContent='Email atau password salah.'; err.style.display='block'; return; }
+  userSesiIni = res[0]; tutupPanel('panel-login'); updateHeader();
+  toast('Selamat datang, '+userSesiIni.nama+'!', 'sukses');
+  if (userSesiIni.role==='admin') { tampilHalaman('hal-admin'); muatStatAdmin(); muatTabelTransaksi(); }
+  else { muatHalamanAcara(); }
 }
-async function doDaftar(){
-  const nama=document.getElementById('daftar-nama').value.trim();
-  const email=document.getElementById('daftar-email').value.trim();
-  const pass=document.getElementById('daftar-pass').value;
-  const err=document.getElementById('err-daftar');const ok=document.getElementById('ok-daftar');
-  err.style.display='none';ok.style.display='none';
-  if(!nama||!email||!pass){err.textContent='Semua kolom wajib diisi.';err.style.display='block';return;}
-  if(pass.length<6){err.textContent='Password minimal 6 karakter.';err.style.display='block';return;}
-  const cek=await db(`users?email=eq.${encodeURIComponent(email)}&select=id`);
-  if(cek&&cek.length>0){err.textContent='Email sudah terdaftar.';err.style.display='block';return;}
+async function doDaftar() {
+  const nama  = document.getElementById('daftar-nama').value.trim();
+  const email = document.getElementById('daftar-email').value.trim();
+  const pass  = document.getElementById('daftar-pass').value;
+  const err=document.getElementById('err-daftar'), ok=document.getElementById('ok-daftar');
+  err.style.display='none'; ok.style.display='none';
+  if (!nama||!email||!pass) { err.textContent='Semua kolom wajib diisi.'; err.style.display='block'; return; }
+  if (pass.length<6) { err.textContent='Password minimal 6 karakter.'; err.style.display='block'; return; }
+  const cek = await db(`users?email=eq.${encodeURIComponent(email)}&select=id`);
+  if (cek&&cek.length>0) { err.textContent='Email sudah terdaftar.'; err.style.display='block'; return; }
   await db('users','POST',{nama,email,password:pass,role:'user'});
-  ok.textContent='Akun berhasil dibuat! Silakan login.';ok.style.display='block';
+  ok.textContent='Akun berhasil dibuat! Silakan login.'; ok.style.display='block';
   ['daftar-nama','daftar-email','daftar-pass'].forEach(id=>document.getElementById(id).value='');
   setTimeout(()=>gantiPanel('panel-daftar','panel-login'),2000);
 }
-function doLogout(){
-  userSesiIni=null;transaksiAktif=null;acaraDipilih=null;
-  updateHeader();tampilHalaman('hal-beranda');
-  setTimeout(()=>mulaiLampu(),600);
-  toast('Anda telah keluar.');
+function doLogout() {
+  userSesiIni=null; transaksiAktif=null; acaraDipilih=null;
+  updateHeader(); tampilHalaman('hal-beranda'); toast('Anda telah keluar.');
 }
 
-/* ===== ACARA ===== */
-async function muatHalamanAcara(){
-  if(!userSesiIni){bukaPanel('panel-login');return;}
+/* ACARA */
+async function muatHalamanAcara() {
+  if (!userSesiIni) { bukaPanel('panel-login'); return; }
   tampilHalaman('hal-acara');
-  const grid=document.getElementById('grid-acara');
-  grid.innerHTML='<p class="loading-text">Memuat penampilan...</p>';
-  const data=await db('acara?select=*&order=tanggal.asc');
-  if(!data||data.length===0){grid.innerHTML='<p class="loading-text">Belum ada penampilan tersedia.</p>';return;}
-  grid.innerHTML='';
-  data.forEach(a=>{
-    const tgl=new Date(a.tanggal).toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
-    const habis=a.kursi_tersisa<=0;
-    const div=document.createElement('div');div.className='kartu-acara';
-    div.innerHTML=`
+  const grid = document.getElementById('grid-acara');
+  grid.innerHTML = '<p class="loading-text">Memuat penampilan...</p>';
+  const data = await db('acara?select=*&order=tanggal.asc');
+  if (!data||data.length===0) { grid.innerHTML='<p class="loading-text">Belum ada penampilan tersedia.</p>'; return; }
+  grid.innerHTML = '';
+  data.forEach(a => {
+    const tgl  = new Date(a.tanggal).toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+    const habis= a.kursi_tersisa<=0;
+    const div  = document.createElement('div'); div.className='kartu-acara';
+    div.innerHTML = `
       <div class="kartu-poster-wrap">
         ${a.poster_url?`<img src="${a.poster_url}" alt="${a.nama_pertunjukan}" loading="lazy">`:`<div class="kartu-poster-icon">🎭</div>`}
       </div>
@@ -844,88 +832,87 @@ async function muatHalamanAcara(){
     grid.appendChild(div);
   });
 }
-
-async function bukaFormBeli(acaraId){
-  const data=await db(`acara?id=eq.${acaraId}&select=*`);
-  if(!data||!data[0]) return;
-  acaraDipilih=data[0];metodeBayar=null;
+async function bukaFormBeli(acaraId) {
+  const data = await db(`acara?id=eq.${acaraId}&select=*`);
+  if (!data||!data[0]) return;
+  acaraDipilih = data[0]; metodeBayar = null;
   document.querySelectorAll('.metode-btn').forEach(b=>b.classList.remove('dipilih'));
-  const tgl=new Date(acaraDipilih.tanggal).toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'});
+  const tgl = new Date(acaraDipilih.tanggal).toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'});
   document.getElementById('info-acara-beli').innerHTML=`
     <p><strong>${acaraDipilih.nama_pertunjukan}</strong></p>
     <p>📅 ${tgl} &nbsp;|&nbsp; 🕐 ${acaraDipilih.jam_open_gate?acaraDipilih.jam_open_gate.slice(0,5):'—'}</p>
     <p>Harga: <strong>${rupiah(acaraDipilih.harga)}</strong> / tiket</p>`;
-  document.getElementById('beli-nama').value=userSesiIni.nama||'';
-  document.getElementById('beli-email').value=userSesiIni.email||'';
-  document.getElementById('beli-jumlah').value=1;
-  document.getElementById('total-harga').textContent=rupiah(acaraDipilih.harga);
+  document.getElementById('beli-nama').value  = userSesiIni.nama||'';
+  document.getElementById('beli-email').value = userSesiIni.email||'';
+  document.getElementById('beli-jumlah').value= 1;
+  document.getElementById('total-harga').textContent = rupiah(acaraDipilih.harga);
   document.getElementById('err-beli').style.display='none';
   bukaPanel('panel-beli');
 }
-function hitungTotal(){
-  if(!acaraDipilih) return;
-  const j=parseInt(document.getElementById('beli-jumlah').value)||1;
-  document.getElementById('total-harga').textContent=rupiah(acaraDipilih.harga*j);
+function hitungTotal() {
+  if (!acaraDipilih) return;
+  const j = parseInt(document.getElementById('beli-jumlah').value)||1;
+  document.getElementById('total-harga').textContent = rupiah(acaraDipilih.harga*j);
 }
-function pilihMetode(m,btn){
-  metodeBayar=m;
+function pilihMetode(m, btn) {
+  metodeBayar = m;
   document.querySelectorAll('.metode-btn').forEach(b=>b.classList.remove('dipilih'));
   btn.classList.add('dipilih');
 }
-async function lanjutBayar(){
-  const nama=document.getElementById('beli-nama').value.trim();
-  const email=document.getElementById('beli-email').value.trim();
-  const jumlah=parseInt(document.getElementById('beli-jumlah').value)||1;
-  const err=document.getElementById('err-beli');err.style.display='none';
-  if(!nama||!email){err.textContent='Nama dan email wajib diisi.';err.style.display='block';return;}
-  if(!metodeBayar){err.textContent='Pilih metode pembayaran.';err.style.display='block';return;}
-  if(jumlah<1||jumlah>acaraDipilih.kursi_tersisa){err.textContent='Jumlah tiket tidak valid.';err.style.display='block';return;}
-  const total=acaraDipilih.harga*jumlah;
-  const res=await db('transaksi','POST',{
-    user_id:userSesiIni.id,acara_id:acaraDipilih.id,
-    nama_pemesan:nama,email_pemesan:email,
-    jumlah_tiket:jumlah,total_bayar:total,metode_bayar:metodeBayar,status:'menunggu'
+async function lanjutBayar() {
+  const nama   = document.getElementById('beli-nama').value.trim();
+  const email  = document.getElementById('beli-email').value.trim();
+  const jumlah = parseInt(document.getElementById('beli-jumlah').value)||1;
+  const err    = document.getElementById('err-beli'); err.style.display='none';
+  if (!nama||!email) { err.textContent='Nama dan email wajib diisi.'; err.style.display='block'; return; }
+  if (!metodeBayar)  { err.textContent='Pilih metode pembayaran.';    err.style.display='block'; return; }
+  if (jumlah<1||jumlah>acaraDipilih.kursi_tersisa) { err.textContent='Jumlah tiket tidak valid.'; err.style.display='block'; return; }
+  const total = acaraDipilih.harga*jumlah;
+  const res = await db('transaksi','POST',{
+    user_id:userSesiIni.id, acara_id:acaraDipilih.id,
+    nama_pemesan:nama, email_pemesan:email,
+    jumlah_tiket:jumlah, total_bayar:total, metode_bayar:metodeBayar, status:'menunggu'
   });
-  if(!res||res.error){err.textContent='Gagal membuat transaksi. Coba lagi.';err.style.display='block';return;}
-  transaksiAktif={nama_pemesan:nama,email_pemesan:email,jumlah_tiket:jumlah,total_bayar:total,metode_bayar:metodeBayar};
-  if(res[0]) transaksiAktif.id=res[0].id;
-  tutupPanel('panel-beli');tampilPanelBayar();
+  if (!res||res.error) { err.textContent='Gagal membuat transaksi. Coba lagi.'; err.style.display='block'; return; }
+  transaksiAktif = {nama_pemesan:nama,email_pemesan:email,jumlah_tiket:jumlah,total_bayar:total,metode_bayar:metodeBayar};
+  if (res[0]) transaksiAktif.id = res[0].id;
+  tutupPanel('panel-beli'); tampilPanelBayar();
 }
-function tampilPanelBayar(){
-  const a=acaraDipilih;let html='';
-  if(metodeBayar==='QRIS'&&a.foto_qris){
+function tampilPanelBayar() {
+  const a = acaraDipilih; let html='';
+  if (metodeBayar==='QRIS'&&a.foto_qris) {
     html+=`<div class="qris-box"><p style="color:#d4a843;letter-spacing:2px;margin-bottom:12px;">Scan QRIS Berikut</p>
     <img src="${a.foto_qris}" alt="QRIS" style="max-width:190px;">
     <p>Total: <strong>${rupiah(transaksiAktif.total_bayar)}</strong></p></div>`;
   }
-  if(a.nomor_rekening&&metodeBayar!=='QRIS'){
+  if (a.nomor_rekening&&metodeBayar!=='QRIS') {
     html+=`<div class="rekening-box">
     <p>Bank / Dompet: <strong>${a.nama_bank||'-'}</strong></p>
     <p>No. Rekening: <strong>${a.nomor_rekening}</strong></p>
     <p>Atas Nama: <strong>${a.nama_rekening||'-'}</strong></p>
     <p style="margin-top:10px;">Total Transfer: <strong style="color:#d4a843;">${rupiah(transaksiAktif.total_bayar)}</strong></p></div>`;
   }
-  if(!a.foto_qris&&!a.nomor_rekening){
+  if (!a.foto_qris&&!a.nomor_rekening) {
     html+=`<div class="rekening-box"><p style="color:#a07850;">Hubungi admin untuk info pembayaran.</p></div>`;
   }
-  document.getElementById('konten-bayar').innerHTML=html;
+  document.getElementById('konten-bayar').innerHTML = html;
   document.getElementById('err-bayar').style.display='none';
   document.getElementById('preview-bukti').innerHTML='';
-  buktiBase64=null;bukaPanel('panel-bayar');
+  buktiBase64=null; bukaPanel('panel-bayar');
 }
-function previewBukti(input){
-  const file=input.files[0];if(!file) return;
-  const reader=new FileReader();
-  reader.onload=function(e){
-    buktiBase64=e.target.result;
+function previewBukti(input) {
+  const file = input.files[0]; if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    buktiBase64 = e.target.result;
     document.getElementById('preview-bukti').innerHTML=`<img src="${buktiBase64}" style="max-width:100%;max-height:160px;border:1px solid #3d1010;margin-bottom:8px;">`;
   };
   reader.readAsDataURL(file);
 }
-async function kirimBukti(){
-  const err=document.getElementById('err-bayar');err.style.display='none';
-  if(!buktiBase64){err.textContent='Upload bukti pembayaran terlebih dahulu.';err.style.display='block';return;}
-  if(!transaksiAktif||!transaksiAktif.id){err.textContent='Data transaksi tidak ditemukan.';err.style.display='block';return;}
+async function kirimBukti() {
+  const err = document.getElementById('err-bayar'); err.style.display='none';
+  if (!buktiBase64) { err.textContent='Upload bukti pembayaran terlebih dahulu.'; err.style.display='block'; return; }
+  if (!transaksiAktif||!transaksiAktif.id) { err.textContent='Data transaksi tidak ditemukan.'; err.style.display='block'; return; }
   await db(`transaksi?id=eq.${transaksiAktif.id}`,'PATCH',{bukti_bayar:buktiBase64,status:'menunggu'});
   tutupPanel('panel-bayar');
   notifBesar('✅','Bukti berhasil dikirim!\nMenunggu konfirmasi admin.');
@@ -1047,27 +1034,33 @@ async function bukaEditAcara(acaraId){
   bukaPanel('panel-tambah-acara');
 }
 
-async function hapusAcara(acaraId,nama){
-  if(!confirm('Yakin hapus acara "'+nama+'"?')) return;
-  try{
-    const r=await fetch(SUPA_URL+'/rest/v1/acara?id=eq.'+acaraId,{
+async function hapusAcara(acaraId, nama){
+  if(!confirm('Yakin hapus acara "'+nama+'"?\nSemua transaksi & tiket terkait juga akan terhapus.')) return;
+  try {
+    /* Hapus tiket terkait dulu */
+    await fetch(SUPA_URL+'/rest/v1/tiket?acara_id=eq.'+acaraId, {
       method:'DELETE',
-      headers:{
-        'apikey':SUPA_KEY,
-        'Authorization':'Bearer '+SUPA_KEY,
-        'Prefer':'return=minimal',
-        'Content-Type':'application/json'
-      }
+      headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY,'Prefer':'return=minimal'}
+    });
+    /* Hapus transaksi terkait */
+    await fetch(SUPA_URL+'/rest/v1/transaksi?acara_id=eq.'+acaraId, {
+      method:'DELETE',
+      headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY,'Prefer':'return=minimal'}
+    });
+    /* Hapus acara */
+    const r = await fetch(SUPA_URL+'/rest/v1/acara?id=eq.'+acaraId, {
+      method:'DELETE',
+      headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY,'Prefer':'return=minimal'}
     });
     if(r.ok||r.status===204||r.status===200){
       notifBesar('🗑','Acara berhasil dihapus.');
       setTimeout(()=>{muatTabelAcara();muatStatAdmin();},400);
     } else {
       const errBody=await r.text();
-      console.error('Hapus error:',r.status,errBody);
-      toast('Gagal hapus ('+r.status+'). Cek console & pastikan SQL sudah dijalankan.','gagal');
+      console.error('Hapus acara error:',r.status,errBody);
+      toast('Gagal hapus acara ('+r.status+').','gagal');
     }
-  } catch(e){
+  } catch(e) {
     console.error('Hapus exception:',e);
     toast('Error koneksi saat menghapus.','gagal');
   }
@@ -1112,8 +1105,7 @@ async function simpanAcara(){
       });
     }
     if(r.ok||r.status===201||r.status===204){
-      tutupPanel('panel-tambah-acara');
-      resetFormAcara();
+      tutupPanel('panel-tambah-acara');resetFormAcara();
       notifBesar('✅',editId?'Acara berhasil diperbarui!':'Acara berhasil ditambahkan!');
       setTimeout(()=>{
         muatStatAdmin();
@@ -1122,15 +1114,14 @@ async function simpanAcara(){
     } else {
       const errTxt=await r.text();
       console.error('Simpan error:',r.status,errTxt);
-      err.textContent='Gagal menyimpan ('+r.status+'). Pastikan SQL sudah dijalankan di Supabase.';
+      err.textContent='Gagal menyimpan ('+r.status+'). Pastikan SQL sudah dijalankan.';
       err.style.display='block';
     }
   } catch(e){
     console.error('Simpan exception:',e);
     err.textContent='Error koneksi. Periksa internet Anda.';err.style.display='block';
   } finally {
-    tombol.textContent=editId?'Simpan Perubahan':'Simpan Acara';
-    tombol.disabled=false;
+    tombol.textContent=editId?'Simpan Perubahan':'Simpan Acara';tombol.disabled=false;
   }
 }
 
@@ -1140,21 +1131,20 @@ function resetFormAcara(){
   document.getElementById('edit-acara-id').value='';
   ['acara-nama','acara-tanggal','acara-jam','acara-detail','acara-harga',
    'acara-kursi','acara-bank','acara-nama-rek','acara-norek'].forEach(id=>{
-    const el=document.getElementById(id);if(el) el.value='';
+    const el=document.getElementById(id);if(el)el.value='';
   });
   ['prev-qris','prev-poster'].forEach(id=>{
     const el=document.getElementById(id);if(el){el.src='';el.style.display='none';}
   });
   ['input-qris-foto','input-poster-foto'].forEach(id=>{
-    const el=document.getElementById(id);if(el) el.value='';
+    const el=document.getElementById(id);if(el)el.value='';
   });
   qrisBase64=null;posterBase64=null;
-  const err=document.getElementById('err-acara');if(err) err.style.display='none';
+  const err=document.getElementById('err-acara');if(err)err.style.display='none';
 }
 
 function tutupPanelAcara(){tutupPanel('panel-tambah-acara');resetFormAcara();}
 
-/* ===== TIKET USER ===== */
 async function muatTiketUser(){
   if(!userSesiIni) return;
   const data=await db(`tiket?user_id=eq.${userSesiIni.id}&select=*,acara(nama_pertunjukan,tanggal,jam_open_gate)&order=created_at.desc`);
@@ -1188,7 +1178,6 @@ async function muatTiketUser(){
   });
 }
 
-/* ===== CLOSE OVERLAY KLIK LUAR ===== */
 document.querySelectorAll('.overlay').forEach(el=>{
   el.addEventListener('click',function(e){
     if(e.target===el){
@@ -1203,3 +1192,6 @@ updateHeader();
 </script>
 </body>
 </html>
+.tombol-lihat:active{transform:scale(0.96);filter:brightness(0.78);}
+.garis-ornamen{text-align:center;color:#d4a843;letter-spacing:10px;padding:18px 0;position:relative;z-index:4;}
+</style>
