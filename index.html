@@ -100,6 +100,9 @@ header{background:linear-gradient(180deg,#2d0000,#1a0a0a);padding:16px 24px;disp
   box-shadow:0 0 20px rgba(139,26,26,0.4);
 }
 .tombol-lihat:hover{background:#a02020;transform:translateY(-2px);box-shadow:0 6px 28px rgba(139,26,26,0.7);}
+.tombol-lihat:active{transform:scale(0.96);filter:brightness(0.78);}
+.garis-ornamen{text-align:center;color:#d4a843;letter-spacing:10px;padding:18px 0;position:relative;z-index:4;}
+</style>
 <style>
 /* ===== OVERLAY & PANEL ===== */
 .overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.88);z-index:1000;justify-content:center;align-items:flex-start;padding:16px;overflow-y:auto;}
@@ -263,7 +266,7 @@ footer{text-align:center;padding:24px 16px;border-top:1px solid #3d1010;color:#5
 </style>
 </head>
 <body>
-<div id="gorden-transisi"><div class="gt-kiri"></div><div class="gt-kanan"></div></div>
+  <div id="gorden-transisi"><div class="gt-kiri"></div><div class="gt-kanan"></div></div>
 <div id="rel-gorden"></div>
 <div id="layar-gorden"><div class="gorden-kiri"></div><div class="gorden-kanan"></div></div>
 
@@ -1192,6 +1195,3 @@ updateHeader();
 </script>
 </body>
 </html>
-.tombol-lihat:active{transform:scale(0.96);filter:brightness(0.78);}
-.garis-ornamen{text-align:center;color:#d4a843;letter-spacing:10px;padding:18px 0;position:relative;z-index:4;}
-</style>
